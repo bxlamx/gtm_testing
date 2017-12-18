@@ -1,0 +1,64 @@
+<html>
+<head>
+
+  
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NHRB2NC');</script>
+<!-- End Google Tag Manager -->
+</script>  
+
+<!-- End Google Tag Manager -->
+
+<!-- Added to test client ID in google analytics -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="application/javascript">
+function submitForm() {
+  
+    // Initiate dataLayer, create one if not already exists
+    window.dataLayer = window.dataLayer || [];
+  
+    ga(function() {
+      
+      // get clientId from the ga object
+      var tracker = ga.getAll()[0];
+      var clientId = tracker.get('clientId');
+      //console.log("clientId:" + clientId)
+      
+      //push the clientId to custom dimension "GA_clientId", name must be the same as defined in GA, event name 'submitLeadForm' same as defined in GTM
+      window.dataLayer.push({'GA_clientId' : clientId,
+                             'event'       : 'submitLeadForm'});
+      
+      // Update the hidden field to be sent to backend by JQuery, should be able to get the value by $_POST['cid'] in backend (depends on backend language)
+      $("#cid").val(clientId);
+      
+      
+    });
+}  
+  
+ </script>
+    
+  <title>
+    Test for GA360
+  </title>
+  </head>
+  <body>
+    
+ <!-- Google Tag Manager (noscript) -->
+ <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHRB2NC"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ <!-- End Google Tag Manager (noscript) -->
+    
+    <div style="margin: .5in; height: 400;"> 
+      <p><b><tt>Lead Form</tt></b></p> 
+      <form>
+        <input type="text" id="cid" name="cid"><br><br>
+        <input type="button" value="Submit" onclick="submitForm()" /><br><br>
+      </form>
+    </div>
+  </body>
+  
+</html>
